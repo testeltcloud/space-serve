@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Logo } from "@/components/Logo";
 import { ThemeToggle } from "@/components/ThemeToggle";
 
-const nav = [
+const nav: { href: string; label: string }[] = [
   // { href: "/", label: "Início" },
   // { href: "/sobre", label: "Sobre" },
 ];

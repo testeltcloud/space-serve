@@ -24,8 +24,6 @@ export default function Home() {
     <main className="flex flex-1 flex-col">
       <Hero right={<HeroPhone />} />
 
-      <div aria-hidden className="h-12 bg-linear-to-b from-[#c9e4fb] to-[#155fcd] dark:from-[#0d1526] dark:to-[#155fcd]" />
-
       <ControleSection />
 
       {/* Ponte: ControleSection (azul) → AnaliseSection (preto) */}
