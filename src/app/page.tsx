@@ -24,15 +24,13 @@ export default function Home() {
     <main className="flex flex-1 flex-col">
       <Hero right={<HeroPhone />} />
 
+      <div aria-hidden className="h-12 bg-linear-to-b from-[#c9e4fb] to-[#155fcd] dark:from-[#0d1526] dark:to-[#155fcd]" />
+
       <ControleSection />
 
       {/* Ponte: ControleSection (azul) → AnaliseSection (preto) */}
-      <div aria-hidden className="h-5 bg-gradient-to-b from-[#155fcd] to-black" />
-
       <AnaliseSection />
 
-      {/* Ponte: AnaliseSection (preto) → Process (branco / zinc-950) */}
-      <div aria-hidden className="h-6 bg-gradient-to-b from-black to-white dark:to-zinc-950" />
 
       <Process />
 
