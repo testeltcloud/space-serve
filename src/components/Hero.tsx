@@ -113,7 +113,7 @@ export function Hero({ right }: { right?: ReactNode }) {
             Organize{" "}
             <MorphingText
               texts={["arquivos", "contratos", "assinaturas", "documentos", "processos"]}
-              className="text-blue-600 dark:text-blue-500"
+              className="text-blue-700 dark:text-blue-500"
             />{" "}
             sem esforço.
           </motion.p>
