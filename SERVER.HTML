@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Space Server — Documentos, assinaturas e aprovações em um só lugar</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F5F8FC;
+    --bg-alt:#EAF1FB;
+    --card:#FFFFFF;
+    --ink:#111233;
+    --ink-soft:#5d6368;
+    --orange:#2563EB;
+    --orange-deep:#1D3FAE;
+    --orange-soft:#DCE9FE;
+    --line:#D9E4F5;
+    --green:#1CA36B;
+    --red:#E0473E;
+    --mono:'Poppins', monospace;
+    --display:'Montserrat', sans-serif;
+    --body:'Poppins', sans-serif;
+    --blue:#2563EB;
+    --blue-deep:#1D3FAE;
+    --blue-soft:#DCE9FE;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:var(--body);
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  img,svg{display:block; max-width:100%;}
+  a{color:inherit;}
+  .wrap{max-width:1160px; margin:0 auto; padding:0 28px;}
+  section{padding:96px 0;}
+  @media(max-width:700px){ section{padding:64px 0;} }
+
+  h1,h2,h3{font-family:var(--display); font-weight:600; letter-spacing:-0.02em; color:var(--ink);}
+  .eyebrow{
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 999px;
+    background: #DCE9FE;
+    color: #2563EB;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .eyebrow::before{content:''; width:22px; height:1.5px; background:var(--orange-deep); display:inline-block;}
+
+  /* NAV */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(161, 161, 163, 0.101); backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  nav{
+    display:flex; align-items:center; justify-content:space-between;
+    max-width:1160px; margin:0 auto; padding:18px 28px;
+    text-decoration:none;
+  }
+  .logo{font-family:var(--display); font-size:20px; font-weight:700; letter-spacing:-0.01em;}
+  .logo span{color:var(--orange);}
+  .nav-links{display:flex; gap:32px; font-size:14.5px; font-weight:500; color:var(--ink-soft);}
+  .nav-links a:hover{color:var(--orange-deep);}
+  .nav-links{text-decoration:none;}
+  .btn{
+    font-family:var(--body); font-weight:600; font-size:14.5px;
+    padding:11px 22px; border-radius:8px; border:none; cursor:pointer;
+    display:inline-flex; align-items:center; gap:8px;
+  }
+  .btn-primary{background:var(--orange); color:#fff;}
+  .btn-primary:hover{background:var(--orange-deep);}
+  .btn-primary{text-decoration:none;}
+  .btn-ghost{background:transparent; color:var(--ink); border:1.5px solid var(--line);}
+  .btn-ghost:hover{border-color:var(--orange);}
+  @media(max-width:760px){ .nav-links{display:none;} }
+
+  /* HERO */
+  .hero{padding:88px 0 60px;}
+  .hero-grid{
+    display:grid; grid-template-columns:1.05fr 0.95fr; gap:56px; align-items:center;
+  }
+  @media(max-width:900px){ .hero-grid{grid-template-columns:1fr;} }
+  .hero h1{
+    font-size:clamp(34px,4.6vw,54px); line-height:1.06; margin-bottom:22px;
+  }
+  .hero h1 em{
+    font-style:normal; color:var(--orange);
+    background:linear-gradient(180deg, transparent 62%, var(--orange-soft) 62%);
+  }
+  .hero p.lead{
+    font-size:18px; color:var(--ink-soft); max-width:480px; margin-bottom:32px;
+  }
+  .hero-ctas{display:flex; gap:14px; flex-wrap:wrap;}
+  .btn-lg{padding:14px 26px; font-size:15px; border-radius:10px;}
+
+  /* HERO MOCKUP */
+  .mock{
+    background:var(--card); border:1px solid var(--line); border-radius:18px;
+    box-shadow:0 30px 60px -30px rgba(193,62,0,0.25);
+    padding:22px; position:relative;
+  }
+  .mock-top{display:flex; align-items:center; justify-content:space-between; margin-bottom:18px;}
+  .mock-brand{font-family:var(--display); font-weight:700; font-size:15px;}
+  .mock-brand span{color:var(--orange);}
+  .mock-avatar{
+    width:30px; height:30px; border-radius:50%; background:var(--ink);
+    color:#fff; font-family:var(--mono); font-size:11px;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .mock-stats{display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-bottom:14px;}
+  .mock-stat{
+    background:var(--bg-alt); border:1px solid var(--line); border-radius:12px; padding:14px 12px;
+  }
+  .mock-stat .label{font-family:var(--mono); font-size:10.5px; color:var(--ink-soft); text-transform:uppercase; letter-spacing:0.06em; margin-bottom:10px;}
+  .mock-stat .num{font-family:var(--display); font-size:22px; font-weight:700; color:var(--orange-deep);}
+  .mock-row{
+    display:flex; align-items:center; gap:12px; padding:11px 8px; border-radius:8px;
+  }
+  .mock-row:hover{background:var(--bg-alt);}
+  .mock-dot{width:8px; height:8px; border-radius:50%; background:var(--orange); flex-shrink:0;}
+  .mock-row .name{font-size:13px; font-weight:600;}
+  .mock-row .meta{font-size:11.5px; color:var(--ink-soft); font-family:var(--mono);}
+  .mock-list{border-top:1px solid var(--line); margin-top:6px; padding-top:8px;}
+  .mock-badge{
+    margin-left:auto; font-family:var(--mono); font-size:10px; padding:3px 9px;
+    background:var(--orange-soft); color:var(--orange-deep); border-radius:20px; font-weight:600;
+  }
+
+  /* PROBLEM */
+  .problem{background:var(--ink); color:#fff;}
+  .problem h2{color:#fff; font-size:clamp(26px,3.2vw,36px); max-width:680px; margin-bottom:20px;}
+  .problem p{color:#D9CDC0; font-size:16.5px; max-width:620px; margin-bottom:14px;}
+  .problem .eyebrow{color:var(--orange);}
+  .problem .eyebrow::before{background:var(--orange);}
+
+  /* OVERVIEW */
+  .overview-grid{display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center;}
+  @media(max-width:900px){ .overview-grid{grid-template-columns:1fr;} }
+  .overview h2{font-size:clamp(26px,3.2vw,36px); margin-bottom:18px;}
+  .overview p{color:var(--ink-soft); font-size:16.5px; margin-bottom:16px; max-width:480px;}
+  .ely-card{
+    background:var(--bg-alt); border:1px solid var(--line); border-radius:14px; padding:18px;
+    display:flex; gap:12px; align-items:flex-start; max-width:440px;
+    color:#090994c1;
+  }
+  .ely-avatar{
+    width:34px; height:34px; border-radius:50%; background:var(--orange);
+    flex-shrink:0; display:flex; align-items:center; justify-content:center;
+    color:#fff; font-family:var(--display); font-weight:700; font-size:14px;
+  }
+  .ely-card .t{font-weight:600; font-size:14px; margin-bottom:3px; color:#090994c1;}
+  .ely-card .d{font-size:13.5px; color:var(--ink-soft); color:#090994c1;}
+
+  /* FEATURE GROUPS */
+  .group-head{text-align:left; max-width:640px; margin-bottom:44px;}
+  .group-head h2{font-size:clamp(24px,3vw,32px);}
+  .cards{display:grid; grid-template-columns:repeat(3,1fr); gap:20px;}
+  @media(max-width:900px){ .cards{grid-template-columns:repeat(2,1fr);} }
+  @media(max-width:640px){ .cards{grid-template-columns:1fr;} }
+  .card{
+    background:var(--card); border:1px solid var(--line); border-radius:14px; padding:24px;
+    transition:transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+  }
+  .card:hover{
+    transform:translateY(-3px); border-color:var(--orange);
+    box-shadow:0 20px 40px -28px rgba(193,62,0,0.35);
+  }
+  .card .icon{
+    width:38px; height:38px; border-radius:10px; background:var(--orange-soft);
+    color:var(--orange-deep); display:flex; align-items:center; justify-content:center;
+    margin-bottom:16px; font-family:var(--display); font-weight:700; font-size:15px;
+  }
+  .card h3{font-size:16.5px; margin-bottom:8px; font-weight:600;}
+  .card p{font-size:14px; color:var(--ink-soft); line-height:1.55;}
+
+  .band{background:var(--bg-alt);}
+
+  /* FINAL CTA */
+  .final{
+    background:linear-gradient(135deg, var(--orange) 0%, var(--orange-deep) 100%);
+    color:#fff; border-radius:24px; margin:0 28px; padding:64px 40px; text-align:center;
+    max-width:1104px; margin-left:auto; margin-right:auto;
+  }
+  .final h2{color:#fff; font-size:clamp(26px,3.6vw,38px); margin-bottom:16px;}
+  .final p{color:#FFE4D2; font-size:16.5px; max-width:520px; margin:0 auto 30px;}
+  .final .btn-primary{background:#fff; color:var(--orange-deep);}
+  .final .btn-primary:hover{background:#FFEADB;}
+  .final .btn-ghost{border-color:rgba(255,255,255,0.5); color:#fff;}
+  .final .btn-ghost:hover{border-color:#fff;}
+  .final-ctas{display:flex; gap:14px; justify-content:center; flex-wrap:wrap;}
+
+  footer{padding:40px 0 50px; text-align:center;}
+  footer p{font-size:13px; color:var(--ink-soft); font-family:var(--mono);}
+
+  /* --- toast animado da Ely --- */
+  .ely-toast{
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #F4F2FF;
+    border: 1px solid #E4DEFB;
+    border-radius: 999px;
+    padding: 8px 16px 8px 8px;
+    box-shadow: 0 12px 28px -14px rgba(99,66,255,0.35);
+    animation: ely-pop 4s ease-in-out infinite;
+    transform-origin: right center;
+  }
+  .ely-toast-avatar{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    background: linear-gradient(135deg, #8B7CF6 0%, #4C6FFF 100%);
+    color: #fff;
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 12.5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .ely-toast-text{
+    font-family: var(--body);
+    font-size: 13.5px;
+    color: #4A4470;
+    white-space: nowrap;
+  }
+  .ely-toast-text b{
+    color: #6C4CE0;
+    font-weight: 700;
+  }
+  @keyframes ely-pop{
+    0%   { opacity: 0; transform: translateX(14px) scale(0.9); }
+    10%  { opacity: 1; transform: translateX(0) scale(1); }
+    20%  { opacity: 1; transform: translateX(0) scale(1); }
+    85%  { opacity: 1; transform: translateX(0) scale(1); }
+    95%  { opacity: 0; transform: translateX(14px) scale(0.9); }
+    100% { opacity: 0; transform: translateX(14px) scale(0.9); }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .ely-toast{ animation: none; opacity: 1; transform: none; }
+  }
+
+  /* --- painel animado de assinatura --- */
+  .panel{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:16px;
+    box-shadow:0 30px 60px -34px rgba(17,18,51,0.18);
+    padding:26px 28px 30px;
+    max-width:620px;
+  }
+  .panel-title{font-family:var(--display);font-weight:700;font-size:16px;margin-bottom:20px;}
+  .row-toggle{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--ink-soft);margin-bottom:16px;}
+  .switch{width:36px;height:20px;border-radius:999px;background:var(--line);position:relative;flex-shrink:0;transition:background .3s ease;}
+  .switch::after{content:'';position:absolute;top:2px;left:2px;width:16px;height:16px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,0.2);transition:transform .3s ease;}
+  .switch.on{background:var(--blue);}
+  .switch.on::after{transform:translateX(16px);}
+  .signee{
+    background:#FAFBFD;
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:16px 18px;
+    margin-bottom:14px;
+  }
+  .signee-head{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
+  .signee-num{
+    width:22px;height:22px;border-radius:6px;background:var(--blue-soft);color:var(--blue-deep);
+    font-family:var(--display);font-weight:700;font-size:11.5px;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .signee-head span{font-size:12px;color:var(--ink-soft);}
+  .fields{display:grid;grid-template-columns:1.2fr 1.4fr 1fr;gap:12px;}
+  .field label{display:block;font-size:10.5px;color:var(--ink-soft);margin-bottom:5px;text-transform:uppercase;letter-spacing:.03em;}
+  .field .box{
+    height:34px;border:1px solid var(--line);border-radius:7px;background:#fff;
+    display:flex;align-items:center;padding:0 10px;font-size:12.5px;color:var(--ink);
+    white-space:nowrap;overflow:hidden;
+  }
+  .field .box .cursor{
+    display:inline-block;width:1.5px;height:13px;background:var(--blue);margin-left:1px;
+    animation:blink 0.9s step-end infinite;
+  }
+  @keyframes blink{50%{opacity:0;}}
+  .files{margin-top:26px;}
+  .files-title{font-family:var(--display);font-weight:700;font-size:14px;margin-bottom:14px;}
+  .file-row{
+    display:flex;align-items:center;gap:12px;padding:11px 4px;border-bottom:1px solid var(--line);
+  }
+  .file-row:last-child{border-bottom:none;}
+  .file-icon{
+    width:28px;height:28px;border-radius:7px;background:var(--blue-soft);flex-shrink:0;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .file-icon svg{width:14px;height:14px;}
+  .file-name{font-size:12.5px;font-weight:500;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+  .file-track{width:110px;height:5px;border-radius:99px;background:var(--line);overflow:hidden;flex-shrink:0;}
+  .file-fill{height:100%;width:0%;background:var(--blue);border-radius:99px;}
+  .file-status{width:74px;text-align:right;font-size:11px;font-weight:600;color:var(--ink-soft);flex-shrink:0;}
+  .file-status.done{color:var(--green);}
+  .footer-btns{display:flex;justify-content:flex-end;gap:10px;margin-top:24px;}
+  .panel .btn.primary{background:var(--line);color:var(--ink-soft);border:none;transition:background .3s ease,color .3s ease;}
+  .panel .btn.primary.ready{background:var(--blue);color:#fff;}
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="logo">sp<span>a</span>ce server</div>
+    <div class="nav-links" text-decoration="none">
+      <a href="#recursos">Recursos</a>
+      <a href="#controle">Controle</a>
+      <a href="#porque">Por que Space Server</a>
+    </div>
+    <div style="display:flex; gap:10px; text-decoration:none;">
+      <a class="btn btn-primary" href="#cta">Começar agora</a>
+    </div>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+
+    <div class="hero-content">
+      <h1>Os arquivos da sua empresa <em>centralizados</em> em um só lugar.</h1>
+      <p class="lead">O Space Server mantém seus arquivos, assinaturas eletrônicas e processos em segurança.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-primary" text-decoration="none" href="#cta" style="padding: 16px 36px; font-size: 18px;">Comece agora</a>
+      </div>
+    </div>
+
+    <div class="mock">
+      <div class="mock-top"><div class="mock-brand">sp<span>a</span>ce server</div></div>
+      <div class="mock-stats">
+        <div class="mock-stat"><div class="label">Aprovações</div><div class="num">3</div></div>
+        <div class="mock-stat"><div class="label">P/ assinatura</div><div class="num">2</div></div>
+        <div class="mock-stat"><div class="label">Compartilhados</div><div class="num">29</div></div>
+      </div>
+      <div class="mock-list">
+        <div class="mock-row"><div class="mock-dot"></div><div><div class="name">Contrato — Fornecedor.pdf</div><div class="meta">Modificado 15/07/2026</div></div><div class="mock-badge">assinado</div></div>
+        <div class="mock-row"><div class="mock-dot"></div><div><div class="name">Proposta comercial Q3</div><div class="meta">Modificado 14/07/2026</div></div><div class="mock-badge">pendente</div></div>
+        <div class="mock-row"><div class="mock-dot"></div><div><div class="name">Pasta Financeiro / Notas</div><div class="meta">Modificado 14/07/2026</div></div><div class="mock-badge">workflow</div></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="problem">
+  <div class="wrap">
+    <h2>Planilha de controle, pasta compartilhada bagunçada, documento assinado por e-mail e ninguém sabe qual é a versão final?</h2>
+    <p>O Space Server resolve isso reunindo tudo em um único painel, com controle, histórico e segurança do início ao fim.</p>
+  </div>
+</section>
+
+<section class="overview">
+  <div class="wrap overview-grid">
+    <div>
+      <h2>Tudo o que importa, em uma só tela.</h2>
+      <p>Tudo o que você e sua empresa precisa em uma única plataforma.</p>
+      <div class="ely-card">
+        <div class="ely-avatar">Ely</div>
+        <div>
+          <div class="t">Ely, sua assistente com IA</div>
+          <div class="d">Integrada à plataforma.</div>
+        </div>
+      </div>
+    </div>
+    <div class="mock">
+      <div class="mock-top">
+        <span class="mock-badge" style="margin-left:0;">Olá, sou a Ely</span>
+      </div>
+      <div class="ely-toast">
+        <div class="ely-toast-avatar">ic</div>
+        <div class="ely-toast-text">Olá, sou a <b>Ely.</b> Como posso te ajudar?</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="recursos">
+  <div class="wrap">
+    <div class="group-head">
+      <h2>Encontre, organize e acompanhe cada arquivo.</h2>
+    </div>
+    <div class="cards">
+      <div class="card">
+        <h3>Meus Arquivos</h3>
+        <p>Crie pastas, organize por setor, projeto ou hierarquia, e carregue documentos em segundos. Estrutura em níveis, para cada time ver só o que precisa.</p>
+      </div>
+      <div class="card">
+        <h3>Anotações</h3>
+        <p>Deixe observações e instruções vinculadas diretamente às pastas e documentos certos. Nada de contexto perdido em conversas paralelas.</p>
+      </div>
+      <div class="card">
+        <h3>Compartilhados</h3>
+        <p>Veja tudo o que você compartilhou e tudo o que foi compartilhado com você. Colaboração fácil, sem abrir mão de rastreabilidade.</p>
+      </div>
+      <div class="card">
+        <h3>Lixeira</h3>
+        <p>Excluiu por engano? Arquivos e pastas removidos ficam guardados, prontos para restauração. Simples assim.</p>
+      </div>
+      <div class="card">
+        <h3>Home</h3>
+        <p>Painel único com aprovações, assinaturas, compartilhamentos e anotações recentes — o resumo do que precisa da sua atenção hoje.</p>
+      </div>
+      <div class="card">
+        <h3>Documentos p/ assinatura</h3>
+        <p>Visão consolidada de tudo o que está assinado, pendente ou em andamento, sempre atualizada.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="assinatura">
+  <div class="wrap">
+    <div class="group-head">
+      <h2>Fluxos de assinatura e aprovação sob seu controle.</h2>
+    </div>
+
+    <div class="panel">
+      <div class="panel-title">Adicionar destinatários (signatário)</div>
+
+      <div class="row-toggle"><div class="switch" id="sw1"></div>Ordem de assinatura</div>
+
+      <div class="signee">
+        <div class="signee-head"><div class="signee-num">1</div><span>Signatário 1</span></div>
+        <div class="fields">
+          <div class="field"><label>Nome</label><div class="box" id="name1"><span class="cursor"></span></div></div>
+          <div class="field"><label>E-mail</label><div class="box" id="email1"><span class="cursor"></span></div></div>
+          <div class="field"><label>Celular</label><div class="box" id="phone1"><span class="cursor"></span></div></div>
+        </div>
+      </div>
+
+      <div class="signee">
+        <div class="signee-head"><div class="signee-num">2</div><span>Signatário 2</span></div>
+        <div class="fields">
+          <div class="field"><label>Nome</label><div class="box" id="name2"><span class="cursor"></span></div></div>
+          <div class="field"><label>E-mail</label><div class="box" id="email2"><span class="cursor"></span></div></div>
+          <div class="field"><label>Celular</label><div class="box" id="phone2"><span class="cursor"></span></div></div>
+        </div>
+      </div>
+
+      <div class="files">
+        <div class="files-title">Adicionar arquivos</div>
+
+        <div class="file-row">
+          <div class="file-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M6 2h9l5 5v15H6V2z" stroke="#1D3FAE" stroke-width="1.6"/></svg></div>
+          <div class="file-name">Contrato — Fornecedor.pdf</div>
+          <div class="file-track"><div class="file-fill" id="f1"></div></div>
+          <div class="file-status" id="s1">Aguardando</div>
+        </div>
+        <div class="file-row">
+          <div class="file-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M6 2h9l5 5v15H6V2z" stroke="#1D3FAE" stroke-width="1.6"/></svg></div>
+          <div class="file-name">Documentos ativos space.pdf</div>
+          <div class="file-track"><div class="file-fill" id="f2"></div></div>
+          <div class="file-status" id="s2">Aguardando</div>
+        </div>
+        <div class="file-row">
+          <div class="file-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M6 2h9l5 5v15H6V2z" stroke="#1D3FAE" stroke-width="1.6"/></svg></div>
+          <div class="file-name">Proposta comercial Q3.pdf</div>
+          <div class="file-track"><div class="file-fill" id="f3"></div></div>
+          <div class="file-status" id="s3">Aguardando</div>
+        </div>
+      </div>
+
+      <div class="footer-btns">
+        <div class="btn">Cancelar</div>
+        <div class="btn primary" id="nextBtn">Próximo</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="controle">
+  <div class="wrap">
+    <div class="group-head">
+      <h2>Gerenciamento de pessoas e arquivos.</h2>
+    </div>
+    <div class="cards">
+      <div class="card">
+        <div class="icon">Pe</div>
+        <h3>Perfil e Acessos</h3>
+        <p>Gerencie perfis de usuário e defina exatamente quem pode ver, editar ou administrar cada área da plataforma.</p>
+      </div>
+      <div class="card">
+        <div class="icon">Us</div>
+        <h3>Adicionar usuário</h3>
+        <p>Inclua novos membros do time em poucos cliques, com o nível de permissão certo desde o primeiro acesso.</p>
+      </div>
+      <div class="card">
+        <div class="icon">Pd</div>
+        <h3>Acessos a pastas e documentos</h3>
+        <p>Controle granular: defina quem acessa cada pasta e cada arquivo, evitando exposição de informação sensível.</p>
+      </div>
+      <div class="card">
+        <div class="icon">Av</div>
+        <h3>Avisos de atividades</h3>
+        <p>Configure notificações para saber, em tempo real, o que está acontecendo com seus documentos e fluxos.</p>
+      </div>
+      <div class="card">
+        <div class="icon">Gr</div>
+        <h3>Grupos de acesso e Funções</h3>
+        <p>Molde a plataforma ao formato da sua organização, agrupando permissões por área, cargo ou responsabilidade.</p>
+      </div>
+      <div class="card">
+        <div class="icon">Mn</div>
+        <h3>Menus</h3>
+        <p>Personalize o que cada perfil enxerga na navegação, mantendo a experiência simples para cada usuário.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="cta">
+  <div class="final">
+    <h2>Pare de gerenciar documentos em ferramentas separadas.</h2>
+    <p>Centralize arquivos, assinaturas e aprovações no Space Server e dê à sua equipe o controle que ela merece.</p>
+    <div class="final-ctas">
+      <a class="btn btn-primary text-decoration-none btn-lg" href="#">Criar minha conta gratuita</a>
+      <a class="btn btn-ghost btn-lg" href="#">Falar com um especialista</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Space Server — organização, segurança e agilidade para os documentos da sua empresa.</p>
+</footer>
+
+<script>
+function sleep(ms){ return new Promise(r => setTimeout(r, ms)); }
+
+async function typeInto(id, text, speed){
+  const el = document.getElementById(id);
+  const cursor = el.querySelector('.cursor');
+  for(let i = 0; i < text.length; i++){
+    el.insertBefore(document.createTextNode(text[i]), cursor);
+    await sleep(speed);
+  }
+}
+
+function clearField(id){
+  const el = document.getElementById(id);
+  const cursor = el.querySelector('.cursor');
+  el.innerHTML = '';
+  el.appendChild(cursor);
+}
+
+async function fillFile(fillId, statusId, duration){
+  const fill = document.getElementById(fillId);
+  const status = document.getElementById(statusId);
+  status.textContent = 'Enviando';
+  fill.style.transition = 'width ' + duration + 'ms linear';
+  fill.style.width = '100%';
+  await sleep(duration);
+  status.textContent = 'Completo';
+  status.classList.add('done');
+}
+
+function resetFile(fillId, statusId){
+  const fill = document.getElementById(fillId);
+  const status = document.getElementById(statusId);
+  fill.style.transition = 'none';
+  fill.style.width = '0%';
+  status.textContent = 'Aguardando';
+  status.classList.remove('done');
+}
+
+async function runCycle(){
+  document.getElementById('sw1').classList.remove('on');
+  document.getElementById('nextBtn').classList.remove('ready');
+  ['name1','email1','phone1','name2','email2','phone2'].forEach(clearField);
+  resetFile('f1','s1'); resetFile('f2','s2'); resetFile('f3','s3');
+
+  await sleep(500);
+  document.getElementById('sw1').classList.add('on');
+  await sleep(400);
+
+  await typeInto('name1', 'Paulo Lopes', 55);
+  await typeInto('email1', 'lopeslopes@gmail.com', 35);
+  await typeInto('phone1', '11 998632212', 45);
+  await sleep(300);
+
+  await typeInto('name2', 'Ana Marthins', 55);
+  await typeInto('email2', 'ana.m@gmail.com', 35);
+  await typeInto('phone2', '11 987755453', 45);
+  await sleep(500);
+
+  fillFile('f1','s1', 1400);
+  await sleep(350);
+  fillFile('f2','s2', 1800);
+  await sleep(350);
+  await fillFile('f3','s3', 1200);
+
+  await sleep(500);
+  document.getElementById('nextBtn').classList.add('ready');
+  await sleep(2600);
+}
+
+async function loop(){
+  while(true){ await runCycle(); }
+}
+loop();
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('is-visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.2 });
+
+document.querySelectorAll('#assinatura .card').forEach(card => observer.observe(card));
+</script>
+
+</body>
+</html>
