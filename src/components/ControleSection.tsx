@@ -36,7 +36,7 @@ export function ControleSection() {
             width={1280}
             height={808}
             unoptimized
-            className="w-full max-w-100 object-contain sm:max-w-125 lg:max-w-150"
+            className="w-full max-w-125 object-contain sm:max-w-150 lg:max-w-175"
           />
         </motion.div>
 

@@ -33,7 +33,7 @@ export default function Register() {
             width={2280}
             height={1008}
             unoptimized
-            className="w-full max-w-125 object-contain drop-shadow-[0_40px_40px_rgba(0,0,0,0.3)] md:max-w-155"
+            className="w-full max-w-150 object-contain drop-shadow-[0_40px_40px_rgba(0,0,0,0.3)] md:max-w-175"
           />
         </div>
 
