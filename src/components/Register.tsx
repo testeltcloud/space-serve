@@ -4,7 +4,7 @@ import Image from "next/image";
 
 export default function Register() {
   return (
-    <div className="relative w-full bg-white dark:bg-zinc-950">
+    <div className="relative w-full overflow-x-hidden bg-white dark:bg-zinc-950">
 
       {/* Onda decorativa de fundo */}
       <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">

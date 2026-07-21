@@ -3,8 +3,8 @@ import { Logo } from "@/components/Logo";
 import { ThemeToggle } from "@/components/ThemeToggle";
 
 const nav = [
-  { href: "/", label: "Início" },
-  { href: "/sobre", label: "Sobre" },
+  // { href: "/", label: "Início" },
+  // { href: "/sobre", label: "Sobre" },
 ];
 
 /**

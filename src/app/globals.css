@@ -162,10 +162,12 @@
    esse acoplamento x/y e mantém o scroll vertical/sticky intactos. */
 html {
   overflow-x: clip;
+  scrollbar-gutter: stable;
 }
 
 body {
   overflow-x: clip;
+  scrollbar-gutter: stable;
   font-family: var(--font-poppins), system-ui, sans-serif;
   transition: background-color 0.2s ease, color 0.2s ease;
 }

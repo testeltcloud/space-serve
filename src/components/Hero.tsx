@@ -49,11 +49,11 @@ export function Hero({ right }: { right?: ReactNode }) {
   };
 
   return (
-    <section className="relative isolate flex min-h-[calc(100svh-5rem)] items-center overflow-hidden">
+    <section className="relative isolate flex min-h-[calc(100svh-5rem)] items-center overflow-hidden bg-[#c9e4fb] dark:bg-[#0d1526]">
       {/* Fundo — ondas azuis deliberadas (contidas no Hero, sem vazar pra outras seções) + brilho suave atrás do visual. */}
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
         <svg
-          className="hero-wave-drift absolute inset-0 h-full w-full"
+          className="hero-wave-drift absolute top-0 bottom-0 -left-[4%] h-full w-[108%]"
           viewBox="0 0 1440 900"
           preserveAspectRatio="xMidYMid slice"
           fill="none"
@@ -181,6 +181,7 @@ export function Hero({ right }: { right?: ReactNode }) {
           )}
         </div>
       </div>
+
     </section>
   );
 }
