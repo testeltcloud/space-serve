@@ -36,7 +36,7 @@ export function DiaTextReveal({
   const perCharDelay = Math.min(0.04, 1.8 / Math.max(totalChars, 1));
 
   return (
-    <span ref={ref} className={`inline ${className}`} aria-label={text}>
+    <span ref={ref} className={`inline ${className}`} role="text" aria-label={text}>
       {segments.map(({ wi, chars, isHighlight }) => (
         <span key={wi} className="mr-[0.3em] inline-block whitespace-nowrap last:mr-0">
           {chars.map(({ char, ci }) => (

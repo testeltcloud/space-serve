@@ -249,7 +249,7 @@ export function AnaliseSection() {
                   <ChatBubble key={i} role={msg.role}>
                     <span
                       className={
-                        msg.role === "user" ? "text-sm text-white sm:text-base" : "text-sm text-neutral-800 sm:text-base"
+                        msg.role === "user" ? "text-xs text-white sm:text-base" : "text-xs text-neutral-800 sm:text-base"
                       }
                     >
                       {msg.text}
@@ -265,8 +265,8 @@ export function AnaliseSection() {
                         duration={55}
                         className={
                           pendingMessage.role === "user"
-                            ? "text-sm text-white sm:text-base"
-                            : "text-sm text-neutral-800 sm:text-base"
+                            ? "text-xs text-white sm:text-base"
+                            : "text-xs text-neutral-800 sm:text-base"
                         }
                         onComplete={handleTypedComplete}
                       >
