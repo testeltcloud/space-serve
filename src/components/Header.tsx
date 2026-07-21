@@ -51,10 +51,10 @@ export function Header() {
         initial={false}
         animate={{
           height: isScrolled ? 56 : 80,
-          opacity: isScrolled ? 0.62 : 1,
+          opacity: isScrolled ? 1 : 1,
           marginTop: isScrolled ? 12 : 0,
-          marginLeft: isScrolled ? 16 : 0,
-          marginRight: isScrolled ? 16 : 0,
+          marginLeft: isScrolled ? "20%" : "0%",
+          marginRight: isScrolled ? "20%" : "0%",
           borderRadius: isScrolled ? 9999 : 0,
           borderTopWidth: isScrolled ? 1 : 0,
           borderLeftWidth: isScrolled ? 1 : 0,
@@ -71,11 +71,11 @@ export function Header() {
           <Link href="/" aria-label="Página inicial" className="flex items-center">
             <motion.div
               initial={false}
-              animate={{ scale: isScrolled ? 0.8 : 1 }}
+              animate={{ scale: isScrolled ? 0.8 : 1, marginLeft: isScrolled ? 0 : 40 }}
               transition={transition}
               className="origin-left"
             >
-              <Logo className="h-12 w-auto sm:h-16 ml-10" priority />
+              <Logo className="h-12 w-auto sm:h-16" priority />
             </motion.div>
           </Link>
 
