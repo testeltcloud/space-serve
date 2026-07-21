@@ -18,7 +18,7 @@ export function ControleSection() {
       {/* Barra decorativa mais clara, ponta arredondada (tipo "C") */}
       <div
         aria-hidden
-        className="pointer-events-none absolute left-0 top-[44%] -z-10 h-32 w-[36%] rounded-r-full bg-white/10 sm:h-40 lg:w-[38%]"
+        className="pointer-events-none absolute left-0 top-[44%] -z-10 h-32 w-[36%] rounded-r-full bg-white/10 sm:h-40 lg:w-[30%]"
       />
 
       <div className="mx-auto grid max-w-7xl items-center gap-10 px-5 py-16 sm:px-6 sm:py-20 lg:grid-cols-[0.9fr_1.1fr] lg:gap-12 lg:py-28">
@@ -36,6 +36,7 @@ export function ControleSection() {
             width={1280}
             height={808}
             unoptimized
+            loading="eager"
             className="w-full max-w-125 object-contain sm:max-w-150 lg:max-w-175"
           />
         </motion.div>

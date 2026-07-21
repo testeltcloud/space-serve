@@ -136,7 +136,7 @@ export function Process() {
               Nossas <span className="text-[#1e60d1]">Soluções</span>
             </h2>
             <p className="mx-auto max-w-2xl text-lg font-light text-zinc-500 dark:text-zinc-400">
-              Segurança, assinatura e gestão de arquivos — tudo no mesmo painel, sem trocar de
+              Segurança, assinatura e gestão de arquivos tudo no mesmo painel, sem trocar de
               ferramenta.
             </p>
           </motion.div>
