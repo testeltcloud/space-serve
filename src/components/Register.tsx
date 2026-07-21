@@ -4,10 +4,10 @@ import Image from "next/image";
 
 export default function Register() {
   return (
-    <div className="relative w-full overflow-hidden bg-white dark:bg-zinc-950">
+    <div className="relative w-full bg-white dark:bg-zinc-950">
 
       {/* Onda decorativa de fundo */}
-      <div className="pointer-events-none absolute inset-0 -z-10">
+      <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
         <svg
           className="absolute h-full w-full"
           preserveAspectRatio="none"
@@ -23,17 +23,18 @@ export default function Register() {
         </svg>
       </div>
 
-      <div className="mx-auto flex max-w-7xl flex-col-reverse items-center gap-8 px-6 py-12 md:flex-row md:gap-12 md:px-12 md:py-16">
+      <div className="mx-auto flex max-w-7xl flex-col-reverse items-center gap-8 px-6 py-6 md:flex-row md:gap-12 md:px-12 md:py-8">
 
         {/* Imagem do celular */}
-        <div className="flex w-full justify-center md:w-1/2">
+        <div className="flex w-full justify-center overflow-visible md:w-[62%]">
           <Image
             src="/doble.png"
             alt="App Space Server no celular"
             width={2280}
             height={1008}
+            loading="eager"
             unoptimized
-            className="w-full max-w-150 object-contain drop-shadow-[0_40px_40px_rgba(0,0,0,0.3)] md:max-w-175"
+            className="w-[130%] object-contain drop-shadow-[0_40px_40px_rgba(0,0,0,0.3)]"
           />
         </div>
 
@@ -47,7 +48,7 @@ export default function Register() {
             Tenha todos os processos sob controle na palma da sua mão com um design feito para o seu dia a dia.
           </p>
 
-          <button className="mt-2 rounded-full bg-[#6d5df6] px-8 py-3 text-base font-bold text-white shadow-lg transition-colors hover:bg-[#5b4de0]">
+          <button className="mt-2 rounded-full bg-[#1e60d1] px-8 py-3 text-base font-bold text-white shadow-lg transition-colors hover:bg-[#155fcd]">
             Começar Agora
           </button>
         </div>
