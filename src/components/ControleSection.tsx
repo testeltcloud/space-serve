@@ -35,7 +35,7 @@ export function ControleSection() {
             alt="App Space Server no celular, com os processos sob controle"
             width={1280}
             height={808}
-            unoptimized
+            sizes="(min-width: 1024px) 700px, (min-width: 640px) 600px, 500px"
             loading="eager"
             className="w-full max-w-125 object-contain sm:max-w-150 lg:max-w-175"
           />

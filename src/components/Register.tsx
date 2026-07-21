@@ -31,9 +31,9 @@ export default function Register() {
             src="/doble.png"
             alt="App Space Server no celular"
             width={2280}
-            height={1008}
+            height={1710}
+            sizes="(min-width: 768px) 81vw, 130vw"
             loading="eager"
-            unoptimized
             className="w-[130%] object-contain drop-shadow-[0_40px_40px_rgba(0,0,0,0.3)]"
           />
         </div>

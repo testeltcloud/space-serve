@@ -1,6 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useRef } from "react";
+import { motion, useInView } from "framer-motion";
 import {
   ShieldCheck,
   Workflow,
@@ -117,6 +118,9 @@ function FeatureCell({ item }: { item: Solution }) {
 }
 
 export function Process() {
+  const contactCardRef = useRef<HTMLDivElement>(null);
+  const contactCardInView = useInView(contactCardRef, { margin: "200px" });
+
   return (
     <section id="processos" className="w-full flex flex-col font-sans">
       {/* --- Ecossistema Completo --- */}
@@ -256,13 +260,18 @@ export function Process() {
             </motion.div>
 
             <motion.div
+              ref={contactCardRef}
               initial={{ opacity: 0, scale: 0.95, y: 30 }}
               whileInView={{ opacity: 1, scale: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
               className="relative w-full max-w-md bg-white dark:bg-zinc-900 rounded-2xl shadow-[0_30px_60px_-15px_rgba(0,0,0,0.12)] dark:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.5)] p-8 md:p-10 flex flex-col gap-6 border border-zinc-100/80 dark:border-zinc-700/50"
             >
-              <BorderBeam size={300} duration={12} delay={9} colorFrom="#1e60d1" colorTo="#818cf8" />
+              {/* offset-distance não é composto pela GPU; só monta enquanto o
+                  cartão está na viewport, pra não gastar main-thread parado fora de tela */}
+              {contactCardInView && (
+                <BorderBeam size={300} duration={12} delay={9} colorFrom="#1e60d1" colorTo="#818cf8" />
+              )}
 
               <h3 className="text-xl font-bold text-zinc-900 dark:text-white">
                 Fale conosco

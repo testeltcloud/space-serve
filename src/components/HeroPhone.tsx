@@ -42,7 +42,7 @@ export function HeroPhone() {
           width={1280}
           height={1132}
           priority
-          unoptimized
+          sizes="(min-width: 1024px) 740px, 90vw"
           className="h-auto w-full select-none object-contain drop-shadow-[0_44px_90px_rgba(21,95,205,0.30)]"
         />
       </motion.div>

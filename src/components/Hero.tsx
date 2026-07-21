@@ -98,7 +98,7 @@ export function Hero({ right }: { right?: ReactNode }) {
             style={{ fontSize: "clamp(1rem, 1.7vw, 1.2rem)" }}
             className="mt-6 max-w-lg text-pretty leading-relaxed text-neutral-600 dark:text-neutral-300"
           > */}
-           <TextAnimate animation="blurInUp" by="character" once  className="mt-6 max-w-lg text-pretty leading-relaxed text-neutral-600 dark:text-neutral-300">
+           <TextAnimate animation="blurInUp" by="word" once  className="mt-6 max-w-lg text-pretty leading-relaxed text-neutral-600 dark:text-neutral-300">
 
             Arquivos, assinaturas e processos em um só painel, com controle,
             histórico e segurança do início ao fim.

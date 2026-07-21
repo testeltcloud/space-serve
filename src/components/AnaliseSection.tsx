@@ -153,7 +153,7 @@ export function AnaliseSection() {
     video.muted = true;
     const playPromise = video.play();
     if (playPromise) playPromise.catch(() => {});
-  }, [reduce]);
+  }, [reduce, isInView]);
 
   useEffect(() => {
     return () => {
@@ -201,18 +201,20 @@ export function AnaliseSection() {
   return (
     <section ref={sectionRef} className="relative bg-black" aria-label="Conheça o chat integrado Ely">
       <div className="flex h-[80vh] min-h-140 w-full flex-col items-center justify-center overflow-hidden">
-          {/* Vídeo de fundo */}
-          <video
-            ref={videoRef}
-            className="absolute inset-0 h-full w-full object-cover"
-            src="/214736_medium.mp4"
-            autoPlay={!reduce}
-            muted
-            loop
-            playsInline
-            preload="auto"
-            aria-hidden
-          />
+          {/* Vídeo de fundo — só monta (e baixa) ao entrar na viewport */}
+          {isInView && (
+            <video
+              ref={videoRef}
+              className="absolute inset-0 h-full w-full object-cover"
+              src="/214736_medium.mp4"
+              autoPlay={!reduce}
+              muted
+              loop
+              playsInline
+              preload="auto"
+              aria-hidden
+            />
+          )}
 
           {/* Filtro escuro por cima do vídeo (legibilidade do texto) */}
           <div className="absolute inset-0 bg-linear-to-b from-black/80 via-black/55 to-black/85" />
