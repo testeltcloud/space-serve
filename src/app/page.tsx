@@ -2,10 +2,12 @@ import type { Metadata } from "next";
 import { buildMetadata } from "@/lib/seo";
 import { Hero } from "@/components/Hero";
 import { Process } from "@/components/Process";
-import { HeroPhone } from "@/components/HeroPhone";
+import { HeroSphere } from "@/components/HeroSphere";
 import { ControleSection } from "@/components/ControleSection";
 import { AnaliseSection } from "@/components/AnaliseSection";
 import Register from "@/components/Register";
+import { NextLevelCta } from "@/components/NextLevelCta";
+import { FeatureTags } from "@/components/FeatureTags";
 
 /**
  * METADATA DA HOME — único e personalizado (não genérico).
@@ -22,13 +24,11 @@ export const metadata: Metadata = buildMetadata({
 export default function Home() {
   return (
     <main className="flex flex-1 flex-col">
-      <Hero right={<HeroPhone />} />
+      <Hero right={<HeroSphere />} />
 
       <ControleSection />
 
-      {/* Ponte: ControleSection (azul) → AnaliseSection (preto) */}
       <AnaliseSection />
-
 
       <Process />
 
@@ -36,6 +36,10 @@ export default function Home() {
       <div aria-hidden className="h-px bg-gradient-to-r from-transparent via-zinc-200 dark:via-zinc-800 to-transparent" />
 
       <Register />
+
+      <NextLevelCta />
+
+      <FeatureTags />
     </main>
   );
 }

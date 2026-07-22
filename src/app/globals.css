@@ -84,31 +84,6 @@
   --font-mono: var(--font-geist-mono);
   --font-poppins: var(--font-poppins);
 
-  /* Magic UI — OrbitingCircles */
-  --animate-orbit: orbit calc(var(--duration) * 1s) linear infinite;
-  @keyframes orbit {
-    0% {
-      transform: rotate(calc(var(--angle) * 1deg))
-        translateY(calc(var(--radius) * 1px)) rotate(calc(var(--angle) * -1deg));
-    }
-    100% {
-      transform: rotate(calc(var(--angle) * 1deg + 360deg))
-        translateY(calc(var(--radius) * 1px))
-        rotate(calc(var(--angle) * -1deg - 360deg));
-    }
-  }
-
-  /* Magic UI — RetroGrid & BorderBeam */
-  --animate-grid: grid 15s linear infinite;
-  @keyframes grid {
-    0% { transform: translateY(-50%); }
-    100% { transform: translateY(0); }
-  }
-
-  --animate-border-beam: border-beam calc(var(--duration)*1s) infinite linear;
-  @keyframes border-beam {
-    100% { offset-distance: 100%; }
-  }
   --font-heading: var(--font-sans);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
@@ -172,95 +147,21 @@ body {
   transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-/* Anel de arquivos girando devagar ao redor do globo (Hero). */
-@keyframes globeRingSpin {
+@keyframes heroSphereSpin {
+  from {
+    transform: rotate(0deg);
+  }
   to {
     transform: rotate(360deg);
   }
 }
-
-/* Todos orbitam no anel e depois entram JUNTOS, se unificando no centro. */
-@keyframes fileIntoGlobe {
-  0% {
-    transform: translateX(var(--radius, 150px)) scale(1);
-    opacity: 0;
-  }
-  8% {
-    opacity: 1;
-  }
-  /* fase de órbita: seguram no raio enquanto o anel gira */
-  55% {
-    transform: translateX(var(--radius, 150px)) scale(1);
-    opacity: 1;
-  }
-  /* entram todos juntos e se unificam no centro */
-  84% {
-    transform: translateX(0) scale(0.1);
-    opacity: 0;
-  }
-  100% {
-    transform: translateX(0) scale(0.1);
-    opacity: 0;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .globe-ring,
-  .file-into-globe {
-    animation: none !important;
-  }
-  .file-into-globe {
-    opacity: 0 !important;
-  }
-}
-
-/* ---- Hero animado: aurora à deriva + flutuação (só transform = GPU) ---- */
-@keyframes heroDriftA {
-  0%, 100% {
-    transform: translate3d(0, 0, 0) scale(1);
-  }
-  33% {
-    transform: translate3d(5%, -4%, 0) scale(1.12);
-  }
-  66% {
-    transform: translate3d(-4%, 4%, 0) scale(0.96);
-  }
-}
-@keyframes heroDriftB {
-  0%, 100% {
-    transform: translate3d(0, 0, 0) scale(1);
-  }
-  50% {
-    transform: translate3d(-6%, 5%, 0) scale(1.16);
-  }
-}
-.hero-drift-a {
-  animation: heroDriftA 20s ease-in-out infinite;
-  will-change: transform;
-}
-.hero-drift-b {
-  animation: heroDriftB 26s ease-in-out infinite;
-  will-change: transform;
-}
-
-/* Sway sutil das ondas de fundo do Hero (horizontal + leve vertical). */
-@keyframes heroWaveDrift {
-  0%, 100% {
-    transform: translate3d(0, 0, 0);
-  }
-  50% {
-    transform: translate3d(-2%, 1.5%, 0);
-  }
-}
-.hero-wave-drift {
-  animation: heroWaveDrift 22s ease-in-out infinite;
+.hero-sphere-spin {
+  animation: heroSphereSpin 60s linear infinite;
   will-change: transform;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .hero-drift-a,
-  .hero-drift-b,
-  .hero-wave-drift {
+  .hero-sphere-spin {
     animation: none !important;
   }
 }
